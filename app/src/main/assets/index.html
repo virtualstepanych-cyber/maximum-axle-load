@@ -1,0 +1,186 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b1220">
+<title>Осевая нагрузка</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="brand">
+    <div class="logo"><span></span></div>
+    <div class="brand-text">
+      <h1>Осевая нагрузка</h1>
+      <p>ПП РФ № 2200 · прил. 1 и 3</p>
+    </div>
+  </div>
+  <button id="infoBtn" class="icon-btn" aria-label="Нормативы">i</button>
+</header>
+
+<main>
+  <div class="seg big" id="tabs">
+    <button data-s="A" class="on">Одиночный</button>
+    <button data-s="B">Тягач + п/п</button>
+    <button data-s="C">Автопоезд</button>
+  </div>
+
+  <section class="card">
+    <div class="row-between">
+      <label class="lbl">Нормативная нагрузка дороги</label>
+      <span class="mini" id="roadHint">11,5 т на ось</span>
+    </div>
+    <div class="seg" id="roadSeg">
+      <button data-r="6">6 т</button>
+      <button data-r="10">10 т</button>
+      <button data-r="11.5" class="on">11,5 т</button>
+    </div>
+    <p class="hint">Сверяйтесь с дорожными знаками: на конкретной дороге норма может быть снижена.</p>
+  </section>
+
+  <!-- ================= СХЕМА A ================= -->
+  <section class="panel" id="panel-A">
+    <div class="card">
+      <h2>Автомобиль без груза</h2>
+      <div class="grid2">
+        <div class="field"><label>Передняя ось, т</label><input id="a_f" inputmode="decimal" value="5,5"></div>
+        <div class="field"><label>Задняя группа, т</label><input id="a_r" inputmode="decimal" value="11,5"></div>
+        <div class="field"><label>База L, м</label><input id="a_L" inputmode="decimal" value="4,0"></div>
+        <div class="field"><label>Осей в задней группе</label>
+          <select id="a_n"><option>1</option><option selected>2</option><option>3</option></select>
+        </div>
+        <div class="field"><label>Между осями группы, м</label><input id="a_d" inputmode="decimal" value="1,35"></div>
+        <div class="field"><label>Колёса задней группы</label>
+          <select id="a_w"><option value="dual" selected>Двускатные</option><option value="one">Односкатные</option></select>
+        </div>
+      </div>
+      <p class="hint">L — от передней оси до середины задней группы (тележки).</p>
+    </div>
+
+    <div class="card">
+      <h2>Груз</h2>
+      <div class="grid2">
+        <div class="field"><label>Масса груза, т</label><input id="a_m" inputmode="decimal" value="7"></div>
+        <div class="field"><label>Центр масс груза от передней оси, м</label><input id="a_x" inputmode="decimal" value="2,7"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= СХЕМА B ================= -->
+  <section class="panel hidden" id="panel-B">
+    <div class="card">
+      <h2>Тягач без груза</h2>
+      <div class="grid2">
+        <div class="field"><label>Передняя ось, т</label><input id="b_f" inputmode="decimal" value="6,0"></div>
+        <div class="field"><label>Задняя тележка, т</label><input id="b_r" inputmode="decimal" value="9,0"></div>
+        <div class="field"><label>База L, м</label><input id="b_L" inputmode="decimal" value="3,6"></div>
+        <div class="field"><label>Осей в тележке</label>
+          <select id="b_n"><option>1</option><option selected>2</option><option>3</option></select>
+        </div>
+        <div class="field"><label>Между осями тележки, м</label><input id="b_d" inputmode="decimal" value="1,35"></div>
+        <div class="field"><label>Седло от передней оси, м</label><input id="b_xs" inputmode="decimal" value="3,0"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Полуприцеп без груза</h2>
+      <div class="grid2">
+        <div class="field"><label>На седло (шкворень), т</label><input id="b_sp" inputmode="decimal" value="2,5"></div>
+        <div class="field"><label>На тележку, т</label><input id="b_st" inputmode="decimal" value="5,0"></div>
+        <div class="field"><label>Шкворень → центр тележки, м</label><input id="b_S" inputmode="decimal" value="7,5"></div>
+        <div class="field"><label>Осей в тележке п/п</label>
+          <select id="b_ns"><option>1</option><option selected>2</option><option>3</option></select>
+        </div>
+        <div class="field"><label>Между осями п/п, м</label><input id="b_ds" inputmode="decimal" value="1,35"></div>
+        <div class="field"><label>Колёса п/п</label>
+          <select id="b_ws"><option value="dual" selected>Двускатные</option><option value="one">Односкатные</option></select>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Груз в полуприцепе</h2>
+      <div class="grid2">
+        <div class="field"><label>Масса груза, т</label><input id="b_m" inputmode="decimal" value="17,5"></div>
+        <div class="field"><label>Центр масс от шкворня, м</label><input id="b_x" inputmode="decimal" value="4,2"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= СХЕМА C ================= -->
+  <section class="panel hidden" id="panel-C">
+    <div class="card">
+      <h2>Автомобиль без груза</h2>
+      <div class="grid2">
+        <div class="field"><label>Передняя ось, т</label><input id="c_f" inputmode="decimal" value="6,0"></div>
+        <div class="field"><label>Задняя группа, т</label><input id="c_r" inputmode="decimal" value="10,5"></div>
+        <div class="field"><label>База L, м</label><input id="c_L" inputmode="decimal" value="4,2"></div>
+        <div class="field"><label>Осей в задней группе</label>
+          <select id="c_n"><option>1</option><option selected>2</option><option>3</option></select>
+        </div>
+        <div class="field"><label>Между осями группы, м</label><input id="c_d" inputmode="decimal" value="1,35"></div>
+        <div class="field"><label>ТСУ от передней оси, м</label><input id="c_xh" inputmode="decimal" value="5,4"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Прицеп без груза</h2>
+      <div class="grid2">
+        <div class="field"><label>На дышло (ТСУ), т</label><input id="c_h" inputmode="decimal" value="0,8"></div>
+        <div class="field"><label>На оси, т</label><input id="c_t" inputmode="decimal" value="4,7"></div>
+        <div class="field"><label>ТСУ → центр осей, м</label><input id="c_B" inputmode="decimal" value="5,0"></div>
+        <div class="field"><label>Осей в прицепе</label>
+          <select id="c_nt"><option>1</option><option selected>2</option><option>3</option></select>
+        </div>
+        <div class="field"><label>Между осями прицепа, м</label><input id="c_dt" inputmode="decimal" value="1,35"></div>
+        <div class="field"><label>Колёса прицепа</label>
+          <select id="c_wt"><option value="dual" selected>Двускатные</option><option value="one">Односкатные</option></select>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Груз</h2>
+      <div class="grid2">
+        <div class="field"><label>В автомобиле, т</label><input id="c_m1" inputmode="decimal" value="4"></div>
+        <div class="field"><label>Центр от передней оси, м</label><input id="c_x1" inputmode="decimal" value="2,2"></div>
+        <div class="field"><label>В прицепе, т</label><input id="c_m2" inputmode="decimal" value="6"></div>
+        <div class="field"><label>Центр от ТСУ, м</label><input id="c_x2" inputmode="decimal" value="2,5"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="result"></section>
+
+  <section class="card tools">
+    <button class="btn ghost" id="saveBtn">Сохранить расчёт</button>
+    <button class="btn ghost" id="copyBtn">Скопировать итог</button>
+  </section>
+
+  <section class="card" id="savedCard">
+    <div class="row-between"><h2>Сохранённые</h2><button class="link" id="clearBtn">очистить</button></div>
+    <div id="savedList" class="saved"></div>
+  </section>
+
+  <footer class="foot">
+    Расчёт справочный. Допустимые нагрузки на конкретной дороге — по дорожным знакам и акту взвешивания.
+  </footer>
+</main>
+
+<div class="modal hidden" id="modal">
+  <div class="modal-inner">
+    <div class="row-between sticky">
+      <h2>Нормативы</h2>
+      <button class="icon-btn" id="modalClose">×</button>
+    </div>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
